@@ -1,0 +1,5 @@
+node_modules
+dist
+
+# Orijinal oyundan alınmış referans ekran görüntüleri (telif nedeniyle repoya konmaz)
+docs/referans/
