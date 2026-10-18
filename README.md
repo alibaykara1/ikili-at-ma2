@@ -9,6 +9,9 @@ Rakibini vur, savur, masadan aşağı at. Son ayakta kalan kazanır.
 ![Vite](https://img.shields.io/badge/Vite-8-646cff?logo=vite&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES%20Modules-f7df1e?logo=javascript&logoColor=black)
 ![Platform](https://img.shields.io/badge/platform-tarayıcı-2ea44f)
+[![Yayın](https://github.com/alibaykara1/ikili-at-ma2/actions/workflows/deploy.yml/badge.svg)](https://github.com/alibaykara1/ikili-at-ma2/actions/workflows/deploy.yml)
+
+### [▶ Tarayıcıda oyna](https://alibaykara1.github.io/ikili-at-ma2/)
 
 <img src="docs/screenshots/gameplay.gif" alt="Oynanış" width="720">
 
@@ -55,7 +58,9 @@ Rakibini vur, savur, masadan aşağı at. Son ayakta kalan kazanır.
 
 ## Kurulum ve çalıştırma
 
-Gereken: [Node.js](https://nodejs.org) 20.19 veya üstü (22+ önerilir).
+Sadece oynamak için kurulum gerekmez: **[alibaykara1.github.io/ikili-at-ma2](https://alibaykara1.github.io/ikili-at-ma2/)** adresini aç. Oyun `main` dalına her gönderimde otomatik olarak yeniden yayınlanır.
+
+Kendi bilgisayarında çalıştırmak ya da geliştirmek için gereken: [Node.js](https://nodejs.org) 20.19 veya üstü (22+ önerilir).
 
 ```bash
 git clone https://github.com/alibaykara1/ikili-at-ma2.git
@@ -143,6 +148,9 @@ Botlar masalar arasındaki geçişleri (zıpla / aşağı in / kenardan yürü) 
 
 ```
 ├── index.html
+├── vite.config.js
+├── .github/workflows/
+│   └── deploy.yml          # main'e her gönderimde GitHub Pages'e yayınlar
 ├── src/
 │   ├── main.js             # Phaser oyununu ve sahneleri başlatır
 │   ├── config.js           # Ayarlanabilir tüm sabitler (hız, zıplama, savrulma, bot seviyeleri...)
