@@ -33,6 +33,9 @@ export default class HUD {
 
     const face = s.add.image(29, 30, player.texKey).setScale(1.2);
     const name = s.add.text(58, 5, player.name, { fontFamily: FONT, fontSize: '13px', color: '#2b1a0c' });
+    // Uzun isim bomba sayısına taşmasın: sığana kadar küçült
+    const maxNameW = CARD_W - 58 - 62;
+    if (name.width > maxNameW) name.setScale(maxNameW / name.width).setY(5 + (1 - maxNameW / name.width) * 7);
     const livesLabel = s.add.text(58, 24, 'LIVES:', { fontFamily: FONT, fontSize: '10px', color: '#2b1a0c' });
     const lives = s.add.text(60, 33, '', {
       fontFamily: FONT, fontSize: '20px', color: '#d8261b', stroke: '#2b1a0c', strokeThickness: 2,

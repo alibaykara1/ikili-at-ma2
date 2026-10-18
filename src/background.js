@@ -2,6 +2,9 @@ import Phaser from 'phaser';
 import { GAME_WIDTH, GAME_HEIGHT } from './config.js';
 import { MAPS } from './maps.js';
 
+// Kamera sarsılınca kenarda boşluk görünmesin diye arka plan ekrandan biraz taşar
+const PAD = 24;
+
 // Haritanın temasına göre arka plan: gökyüzü, güneş/ay, yıldızlar, katmanlı tepeler, kaktüsler
 export function drawDesertBackground(scene, theme = MAPS.desert.theme) {
   const g = scene.add.graphics();
@@ -9,7 +12,7 @@ export function drawDesertBackground(scene, theme = MAPS.desert.theme) {
   // Gökyüzü geçişi
   const [top, bottom] = theme.sky;
   g.fillGradientStyle(top, top, bottom, bottom, 1);
-  g.fillRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
+  g.fillRect(-PAD, -PAD, GAME_WIDTH + PAD * 2, GAME_HEIGHT + PAD * 2);
 
   // Yıldızlar (sabit tohumla, her açılışta aynı yerde)
   if (theme.stars) {
@@ -41,12 +44,12 @@ export function drawDesertBackground(scene, theme = MAPS.desert.theme) {
 function drawHills(g, color, baseY, amp, freq, phase) {
   g.fillStyle(color, 1);
   g.beginPath();
-  g.moveTo(0, GAME_HEIGHT);
-  for (let x = 0; x <= GAME_WIDTH; x += 10) {
+  g.moveTo(-PAD, GAME_HEIGHT + PAD);
+  for (let x = -PAD; x <= GAME_WIDTH + PAD; x += 10) {
     const y = baseY - Math.sin(x * freq + phase) * amp - Math.sin(x * freq * 2.3 + phase) * amp * 0.3;
     g.lineTo(x, y);
   }
-  g.lineTo(GAME_WIDTH, GAME_HEIGHT);
+  g.lineTo(GAME_WIDTH + PAD, GAME_HEIGHT + PAD);
   g.closePath();
   g.fillPath();
 }

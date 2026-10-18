@@ -1,7 +1,21 @@
 {
   "name": "ikili-catisma-2-klon",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "description": "Aynı klavyede 2-4 kişilik, silahlı 2D platform dövüş oyunu (Gun Mayhem 2 / İkili Çatışma 2 klonu). Phaser 3 + Vite.",
+  "keywords": [
+    "phaser",
+    "phaser3",
+    "game",
+    "platformer",
+    "local-multiplayer",
+    "gun-mayhem",
+    "ikili-catisma"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/alibaykara1/ikili-at-ma2.git"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",

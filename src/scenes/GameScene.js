@@ -100,16 +100,28 @@ export default class GameScene extends Phaser.Scene {
     const size = Math.min(26 + n * 3, 48);
     const x = victim.sprite.x + Phaser.Math.Between(-12, 12);
     const y = victim.sprite.y - 40;
-    const t = this.add.text(x, y, msg, {
-      fontFamily: FONT, fontSize: `${size}px`, color: '#ff9a1f', stroke: '#5a2a00', strokeThickness: 6,
-    }).setOrigin(0.5).setDepth(24).setAngle(Phaser.Math.Between(-10, 10)).setScale(1.8).setAlpha(0);
+    // Her saldırganın tek bir combo yazısı olur; yeni vuruşta o yazı güncellenir (üst üste binmesin)
+    let t = attacker.comboText;
+    if (t?.active) {
+      this.tweens.killTweensOf(t);
+    } else {
+      t = this.add.text(0, 0, '', {
+        fontFamily: FONT, fontSize: `${size}px`, color: '#ff9a1f', stroke: '#5a2a00', strokeThickness: 6,
+      }).setOrigin(0.5).setDepth(24);
+      attacker.comboText = t;
+    }
+    t.setText(msg).setFontSize(size).setPosition(x, y).setAngle(Phaser.Math.Between(-10, 10))
+      .setScale(1.6).setAlpha(1);
     this.tweens.chain({
       targets: t,
       tweens: [
-        { scale: 1, alpha: 1, duration: 140, ease: 'Back.out' },
+        { scale: 1, duration: 140, ease: 'Back.out' },
         { y: y - 26, alpha: 0, delay: 450, duration: 400 },
       ],
-      onComplete: () => t.destroy(),
+      onComplete: () => {
+        t.destroy();
+        if (attacker.comboText === t) attacker.comboText = null;
+      },
     });
   }
 
